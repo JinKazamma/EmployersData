@@ -1,9 +1,6 @@
 #include <iostream>
 #include <string>
-#include <fstream>
-#include <cstdlib>
-#include <ctime>
-#include <cstring> 
+#include <fstream> 
 #include <vector>
 #include <typeinfo>
 using namespace std;
@@ -100,10 +97,18 @@ bool isAssistant(rabotnik* pUknown)
 int main()
 {
 	setlocale(LC_ALL, "ru");
-	string data = "employes.dat";
+	string data = "/home/dante/Документы/Task1/employes.dat";
 	ifstream fin;
 	string str;
 	string str2;
+	vector <string> slova;
+	string slovo;
+	string Director = "director";
+	string Programmer = "programmer";
+	string Assistant = "assistant";
+	vector <rabotnik*> rab;
+	string vibor;
+	char ch;
 	int temp = 0;
 	fin.open(data);
 	int size = -1;
@@ -136,14 +141,6 @@ int main()
 			str2 += str[i];
 		}
 	}
-
-
-	vector <string> slova;
-	string slovo;
-	string Director = "director";
-	string Programmer = "programmer";
-	string Assistant = "assistant";
-	vector <rabotnik*> rab;
 	for (int j = 0; j < str2.size(); j++)
 	{
 		if (str2[j] != ';')
@@ -174,11 +171,7 @@ int main()
 				rab.push_back(new assistant);
 				rab[k++]->getdata(slova[j + 1], slova[j + 2]);
 			}
-		}
-	
-	string vibor;
-	char ch;
-	
+		}	
 		do {
 			cout << "введите профессию: director/programmer/assistant "; cin >> vibor;
 			for (int i = 0; i < rab.size() ; i++)
