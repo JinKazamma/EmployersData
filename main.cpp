@@ -21,7 +21,7 @@ public:
 		vremja = stoi(time);
 		return vremja;
 	}
-	virtual void showdata();
+	virtual void showdata(){}
 	
 };
 class director : public rabotnik
