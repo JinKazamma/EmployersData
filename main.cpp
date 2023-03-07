@@ -6,7 +6,7 @@
 using namespace std;
 
 class rabotnik
-{
+{protected:
 	string name;
 	string time;
 	int vremja;
@@ -21,10 +21,8 @@ public:
 		vremja = stoi(time);
 		return vremja;
 	}
-	virtual void showdata()
-	{
-		cout << name<<"\t";
-	}
+	virtual void showdata();
+	
 };
 class director : public rabotnik
 {
@@ -36,7 +34,7 @@ public:
 	}
 	void showdata()
 	{
-		rabotnik::showdata();
+		cout << name<<"\t";
 		
 		cout << gettime() * koef << "$" << endl;
 	}	
@@ -51,7 +49,7 @@ public:
 	}
 	void showdata()
 	{
-		rabotnik::showdata();
+		cout << name<<"\t";
 
 		cout  << gettime() * koef << "$" << endl;
 	}
@@ -66,7 +64,7 @@ public:
 	}
 	void showdata()
 	{
-		rabotnik::showdata();
+		cout << name<<"\t";
 		cout <<  gettime() * koef<<"$" << endl;
 	}
 };
