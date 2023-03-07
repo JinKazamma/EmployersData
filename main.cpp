@@ -100,7 +100,7 @@ bool isAssistant(rabotnik* pUknown)
 int main()
 {
 	setlocale(LC_ALL, "ru");
-	string data = "C:/Users/markt/OneDrive/Рабочий стол/employes.dat";
+	string data = "employes.dat";
 	ifstream fin;
 	string str;
 	string str2;
