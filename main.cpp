@@ -103,9 +103,6 @@ int main()
 	string str2;
 	vector <string> slova;
 	string slovo;
-	string Director = "director";
-	string Programmer = "programmer";
-	string Assistant = "assistant";
 	vector <rabotnik*> rab;
 	string vibor;
 	char ch;
@@ -156,17 +153,17 @@ int main()
 	int k = 0;
 	for (int j = 0; j < slova.size(); j++)
 		{
-			if (slova[j] == Director)
+			if (slova[j] == "director")
 			{
 				rab.push_back(new director);
 				rab[k++]->getdata(slova[j + 1], slova[j + 2]);
 			}
-			if (slova[j] == Programmer)
+			if (slova[j] == "programmer")
 			{ 
 				rab.push_back(new programmer);
 				rab[k++]->getdata(slova[j + 1], slova[j + 2]);
 			}
-			if (slova[j] == Assistant)
+			if (slova[j] == "assistant")
 			{
 				rab.push_back(new assistant);
 				rab[k++]->getdata(slova[j + 1], slova[j + 2]);
