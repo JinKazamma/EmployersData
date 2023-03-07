@@ -11,7 +11,7 @@ class rabotnik
 	string time;
 	int vremja;
 public:
-	virtual void getdata(string &Name, string Time)
+	virtual void getdata(string &Name, string &Time)
 	{
 		name = Name;
 		time = Time;
@@ -30,7 +30,7 @@ class director : public rabotnik
 {
 	int koef = 500;
 public:
-	void getdata(string& Name, string Time)
+	void getdata(string& Name, string &Time)
 	{
 		rabotnik::getdata(Name, Time);
 	}
@@ -45,7 +45,7 @@ class programmer : public rabotnik
 {
 	int koef = 350;
 public:
-	void getdata(string& Namme, string Timme)
+	void getdata(string& Namme, string &Timme)
 	{
 		rabotnik::getdata(Namme, Timme);
 	}
