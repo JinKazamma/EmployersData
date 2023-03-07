@@ -19,7 +19,6 @@ public:
 	virtual int gettime()
 	{
 		vremja = stoi(time);
-		return vremja;
 	}
 	virtual void showdata(){}
 	
