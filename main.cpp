@@ -13,7 +13,7 @@ class rabotnik
 	
 public:
 	rabotnik(){}
-	rabotnik( string &data,vector <string> &slova)
+	rabotnik(string &data,vector <string> &slova)
 	{	
 		int temp = 0;
 		string slovo;
@@ -149,15 +149,8 @@ bool isAssistant(rabotnik* pUknown)
 	else
 		return false;
 }
-int main()
+void Parsdata(vector<string>&slova,vector <rabotnik*> &rab)
 {
-	setlocale(LC_ALL, "ru");
-	string data = "/home/dante/Документы/Task1/employes.dat";
-	vector <string> slova;
-	vector <rabotnik*> rab;
-	string vibor;
-	char ch;
-	rabotnik Rdata(data,slova);
 	int k = 0;
 	for (int j = 0; j < slova.size(); j++)
 		{
@@ -177,6 +170,17 @@ int main()
 				rab[k++]->getdata(slova[j + 1], slova[j + 2]);
 			}
 		}	
+}
+int main()
+{
+	setlocale(LC_ALL, "ru");
+	string data = "/home/dante/Документы/Task1/employes.dat";
+	vector <string> slova;
+	vector <rabotnik*> rab;
+	string vibor;
+	rabotnik ParsSlova(data,slova);
+	char ch;
+	Parsdata(slova,rab);
 		do {
 			cout << "введите профессию: director/programmer/assistant "; cin >> vibor;
 			for (int i = 0; i < rab.size() ; i++)
