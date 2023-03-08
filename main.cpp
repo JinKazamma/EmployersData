@@ -10,103 +10,18 @@ class rabotnik
 	string name;
 	string time;
 	int vremja;
-public:
-	virtual void getdata(string &Name, string &Time)
-	{
-		name = Name;
-		time = Time;
-	}
-	virtual int gettime()
-	{
-		vremja = stoi(time);
-	}
-	virtual void showdata(){}
 	
-};
-class director : public rabotnik
-{
-	int koef = 500;
 public:
-	void getdata(string& Name, string &Time)
-	{
-		rabotnik::getdata(Name, Time);
-	}
-	void showdata()
-	{
-		cout << name<<"\t";
-		
-		cout << gettime() * koef << "$" << endl;
-	}	
-};
-class programmer : public rabotnik
-{
-	int koef = 350;
-public:
-	void getdata(string& Namme, string &Timme)
-	{
-		rabotnik::getdata(Namme, Timme);
-	}
-	void showdata()
-	{
-		cout << name<<"\t";
-
-		cout  << gettime() * koef << "$" << endl;
-	}
-};
-class assistant : public rabotnik
-{
-	int koef = 200;
-public:
-	void getdata(string& Namme, string Timme)
-	{
-		rabotnik::getdata(Namme, Timme);
-	}
-	void showdata()
-	{
-		cout << name<<"\t";
-		cout <<  gettime() * koef<<"$" << endl;
-	}
-};
-bool isDirector(rabotnik* pUknown)
-{
-	director* pdir;
-	if (pdir = dynamic_cast<director*>(pUknown))
-		return true;
-	else
-		return false;
-}
-bool isProgrammer(rabotnik* pUknown)
-{
-	programmer* pdir;
-	if (pdir = dynamic_cast<programmer*>(pUknown))
-		return true;
-	else
-		return false;
-}
-bool isAssistant(rabotnik* pUknown)
-{
-	assistant* pdir;
-	if (pdir = dynamic_cast<assistant*>(pUknown))
-		return true;
-	else
-		return false;
-}
-int main()
-{
-	setlocale(LC_ALL, "ru");
-	string data = "/home/dante/Документы/Task1/employes.dat";
-	ifstream fin;
-	string str;
-	string str2;
-	vector <string> slova;
-	string slovo;
-	vector <rabotnik*> rab;
-	string vibor;
-	char ch;
-	int temp = 0;
-	fin.open(data);
-	int size = -1;
-	if (fin.is_open())
+	rabotnik(){}
+	rabotnik( string &data,vector <string> &slova)
+	{	
+		int temp = 0;
+		string slovo;
+		string str;
+		string str2;
+		ifstream fin;
+		fin.open(data);
+		if (fin.is_open())
 	{
 		cout << "файл открыт" << endl;
 		char ch;
@@ -147,6 +62,102 @@ int main()
 			slovo.clear();
 		}
 	}
+
+	};
+	virtual void getdata(string &Name, string &Time)
+	{
+		name = Name;
+		time = Time;
+	}
+	virtual int gettime()
+	{
+		vremja = stoi(time);
+	}
+	virtual void showdata(){}
+
+	
+	
+};
+class director : public rabotnik
+{
+	int koef = 500;
+public:
+	director(){}
+	void getdata(string& Name, string &Time)
+	{
+		rabotnik::getdata(Name, Time);
+	}
+	void showdata()
+	{
+		cout << name<<"\t";
+		
+		cout << gettime() * koef << "$" << endl;
+	}	
+};
+class programmer : public rabotnik
+{
+	int koef = 350;
+public:
+	programmer(){}
+	void getdata(string& Namme, string &Timme)
+	{
+		rabotnik::getdata(Namme, Timme);
+	}
+	void showdata()
+	{
+		cout << name<<"\t";
+
+		cout  << gettime() * koef << "$" << endl;
+	}
+};
+class assistant : public rabotnik
+{
+	int koef = 200;
+public:
+	assistant(){}
+	void getdata(string& Namme, string Timme)
+	{
+		rabotnik::getdata(Namme, Timme);
+	}
+	void showdata()
+	{
+		cout << name;
+		cout <<"\t"<<gettime() * koef<<"$" << endl;
+	}
+};
+bool isDirector(rabotnik* pUknown)
+{
+	director* pdir;
+	if (pdir = dynamic_cast<director*>(pUknown))
+		return true;
+	else
+		return false;
+}
+bool isProgrammer(rabotnik* pUknown)
+{
+	programmer* pdir;
+	if (pdir = dynamic_cast<programmer*>(pUknown))
+		return true;
+	else
+		return false;
+}
+bool isAssistant(rabotnik* pUknown)
+{
+	assistant* pdir;
+	if (pdir = dynamic_cast<assistant*>(pUknown))
+		return true;
+	else
+		return false;
+}
+int main()
+{
+	setlocale(LC_ALL, "ru");
+	string data = "/home/dante/Документы/Task1/employes.dat";
+	vector <string> slova;
+	vector <rabotnik*> rab;
+	string vibor;
+	char ch;
+	rabotnik Rdata(data,slova);
 	int k = 0;
 	for (int j = 0; j < slova.size(); j++)
 		{
