@@ -14,7 +14,7 @@ public:
 	worker(){}
 	worker(string &data,vector <string> &ArrForParsedWords)
 	{	
-		string Parsedstring;
+		string ParsedWord;
 		string strToReadData;
 		ifstream fin;
 		fin.open(data);
@@ -36,12 +36,12 @@ public:
 		{
 			if (strToReadData[i] != '\n'&&strToReadData[i]!=';')
 			{
-				Parsedstring += strToReadData[i];
+				ParsedWord += strToReadData[i];
 			}
 			else
 			{
-				ArrForParsedWords.push_back(Parsedstring);
-				Parsedstring.clear();
+				ArrForParsedWords.push_back(ParsedWord);
+				ParsedWord.clear();
 			}
 		}
 	};
