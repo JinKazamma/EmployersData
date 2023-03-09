@@ -45,12 +45,12 @@ public:
 		}
 	}
 	};
-	virtual void getdata(const string &Name,const string &Time)
+	void SetData(const string &Name,const string &Time)
 	{
 		name = Name;
 		timeOfWork = Time;
 	}
-	virtual int gettime()
+	int gettime()
 	{
 		timetoInt = stoi(timeOfWork);
 	}
@@ -62,9 +62,9 @@ class director : public rabotnik
 	int koef = 500;
 public:
 	director(){}
-	void getdata(const string& Name, const string &Time)
+	void SetData(const string& Name, const string &Time)
 	{
-		rabotnik::getdata(Name, Time);
+		rabotnik::SetData(Name, Time);
 	}
 	void showdata()
 	{
@@ -82,9 +82,9 @@ class programmer : public rabotnik
 	int koef = 350;
 public:
 	programmer(){}
-	void getdata(const string& Namme,const string &Timme)
+	void SetData(const string& Namme,const string &Timme)
 	{
-		rabotnik::getdata(Namme, Timme);
+		rabotnik::SetData(Namme, Timme);
 	}
 	void showdata()
 	{
@@ -102,9 +102,9 @@ class assistant : public rabotnik
 	int koef = 200;
 public:
 	assistant(){}
-	void getdata(const string& Namme,const string Timme)
+	void SetData(const string& Namme,const string Timme)
 	{
-		rabotnik::getdata(Namme, Timme);
+		rabotnik::SetData(Namme, Timme);
 	}
 	void showdata()
 	{
@@ -124,17 +124,17 @@ void Parsdata(vector<string>&ArrForParsedWords,vector <rabotnik*> &rab)
 			if (ArrForParsedWords[j] == "director")
 			{
 				rab.push_back(new director);
-				rab[k++]->getdata(ArrForParsedWords[j + 1], ArrForParsedWords[j + 2]);
+				rab[k++]->SetData(ArrForParsedWords[j + 1], ArrForParsedWords[j + 2]);
 			}
 			if (ArrForParsedWords[j] == "programmer")
 			{ 
 				rab.push_back(new programmer);
-				rab[k++]->getdata(ArrForParsedWords[j + 1], ArrForParsedWords[j + 2]);
+				rab[k++]->SetData(ArrForParsedWords[j + 1], ArrForParsedWords[j + 2]);
 			}
 			if (ArrForParsedWords[j] == "assistant")
 			{
 				rab.push_back(new assistant);
-				rab[k++]->getdata(ArrForParsedWords[j + 1], ArrForParsedWords[j + 2]);
+				rab[k++]->SetData(ArrForParsedWords[j + 1], ArrForParsedWords[j + 2]);
 			}
 		}	
 }
