@@ -28,7 +28,6 @@ public:
 		{
 			str += ch;
 		}
-
 	}
 	else
 	{
@@ -63,7 +62,7 @@ public:
 	}
 
 	};
-	virtual void getdata(string &Name, string &Time)
+	virtual void getdata(const string &Name,const string &Time)
 	{
 		name = Name;
 		time = Time;
@@ -73,17 +72,14 @@ public:
 		vremja = stoi(time);
 	}
 	virtual void showdata(){}
-	virtual bool isProf(string&){}
-
-	
-	
+	virtual bool isProf(const string&){}	
 };
 class director : public rabotnik
 {
 	int koef = 500;
 public:
 	director(){}
-	void getdata(string& Name, string &Time)
+	void getdata(const string& Name, const string &Time)
 	{
 		rabotnik::getdata(Name, Time);
 	}
@@ -93,7 +89,7 @@ public:
 		
 		cout << gettime() * koef << "$" << endl;
 	}	
-	bool isProf(string &str)
+	bool isProf(const string &str)
 	{
 		return (str=="director");
 	}
@@ -103,7 +99,7 @@ class programmer : public rabotnik
 	int koef = 350;
 public:
 	programmer(){}
-	void getdata(string& Namme, string &Timme)
+	void getdata(const string& Namme,const string &Timme)
 	{
 		rabotnik::getdata(Namme, Timme);
 	}
@@ -113,7 +109,7 @@ public:
 
 		cout  << gettime() * koef << "$" << endl;
 	}
-	bool isProf(string &str)
+	bool isProf(const string &str)
 	{
 		return (str=="programmer");
 	}
@@ -123,7 +119,7 @@ class assistant : public rabotnik
 	int koef = 200;
 public:
 	assistant(){}
-	void getdata(string& Namme, string Timme)
+	void getdata(const string& Namme,const string Timme)
 	{
 		rabotnik::getdata(Namme, Timme);
 	}
@@ -132,7 +128,7 @@ public:
 		cout << name;
 		cout <<"\t"<<gettime() * koef<<"$" << endl;
 	}
-	bool isProf(string &str)
+	bool isProf(const string &str)
 	{
 		return (str=="assistant");
 	}
