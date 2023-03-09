@@ -2,48 +2,48 @@
 #include <string>
 #include <fstream> 
 #include <vector>
-#include <typeinfo>
+
 using namespace std;
 
-class rabotnik
+class worker
 {protected:
 	string name;
 	string timeOfWork;
 	int timetoInt;
 public:
-	rabotnik(){}
-	rabotnik(string &data,vector <string> &ArrForParsedWords)
+	worker(){}
+	worker(string &data,vector <string> &ArrForParsedWords)
 	{	
 		string Parsedstring;
 		string strToReadData;
 		ifstream fin;
 		fin.open(data);
 		if (fin.is_open())
-	{
-		cout << "файл открыт" << endl;
-		char ch;
-		while (fin.get(ch))
 		{
-			strToReadData += ch;
-		}
-	}
-	else
-	{
-		cout << "ошибка файл не открылся" << endl;
-	}
-	fin.close();
-	for (int i = 0; i < strToReadData.size() - 1; i++)
-	{
-		if (strToReadData[i] != '\n'&&strToReadData[i]!=';')
-		{
-			Parsedstring += strToReadData[i];
+			cout << "файл открыт" << endl;
+			char ch;
+			while (fin.get(ch))
+			{
+				strToReadData += ch;
+			}
 		}
 		else
 		{
-			ArrForParsedWords.push_back(Parsedstring);
-			Parsedstring.clear();
+			cout << "ошибка файл не открылся" << endl;
 		}
-	}
+		fin.close();
+		for (int i = 0; i < strToReadData.size() - 1; i++)
+		{
+			if (strToReadData[i] != '\n'&&strToReadData[i]!=';')
+			{
+				Parsedstring += strToReadData[i];
+			}
+			else
+			{
+				ArrForParsedWords.push_back(Parsedstring);
+				Parsedstring.clear();
+			}
+		}
 	};
 	void SetData(const string &Name,const string &Time)
 	{
@@ -57,14 +57,14 @@ public:
 	virtual void showdata(){}
 	virtual bool isProf(const string&){}	
 };
-class director : public rabotnik
+class director : public worker
 {
 	int koef = 500;
 public:
 	director(){}
 	void SetData(const string& Name, const string &Time)
 	{
-		rabotnik::SetData(Name, Time);
+		worker::SetData(Name, Time);
 	}
 	void showdata()
 	{
@@ -77,14 +77,14 @@ public:
 		return (str=="director");
 	}
 };
-class programmer : public rabotnik
+class programmer : public worker
 {
 	int koef = 350;
 public:
 	programmer(){}
 	void SetData(const string& Namme,const string &Timme)
 	{
-		rabotnik::SetData(Namme, Timme);
+		worker::SetData(Namme, Timme);
 	}
 	void showdata()
 	{
@@ -97,14 +97,14 @@ public:
 		return (str=="programmer");
 	}
 };
-class assistant : public rabotnik
+class assistant : public worker
 {
 	int koef = 200;
 public:
 	assistant(){}
 	void SetData(const string& Namme,const string Timme)
 	{
-		rabotnik::SetData(Namme, Timme);
+		worker::SetData(Namme, Timme);
 	}
 	void showdata()
 	{
@@ -116,7 +116,7 @@ public:
 		return (str=="assistant");
 	}
 };
-void Parsdata(vector<string>&ArrForParsedWords,vector <rabotnik*> &rab)
+void Parsdata(vector<string>&ArrForParsedWords,vector <worker*> &rab)
 {
 	int k = 0;
 	for (int j = 0; j < ArrForParsedWords.size(); j++)
@@ -143,10 +143,10 @@ int main()
 	setlocale(LC_ALL, "ru");
 	string data = "/home/dante/Документы/Task1/employes.dat";
 	vector <string> ArrForParsedWords;
-	vector <rabotnik*> rab;
+	vector <worker*> rab;
 	string EnterProfesion;
 	char choice;
-	rabotnik Parsing(data,ArrForParsedWords);
+	worker Parsing(data,ArrForParsedWords);
 	Parsdata(ArrForParsedWords,rab);
 		do 
 		{
@@ -175,7 +175,7 @@ int main()
 					}
 				}
 			}
-			cout << "ввести еще? y/n "; cin >> choice;
+			cout << "ввести еще? y/n "; cin>>choice;
 	}	while (choice != 'n');
 	return 0;
 }
