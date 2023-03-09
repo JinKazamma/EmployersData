@@ -144,32 +144,32 @@ int main()
 	string data = "/home/dante/Документы/Task1/employes.dat";
 	vector <string> ArrForParsedWords;
 	vector <rabotnik*> rab;
-	string StrForEnterProfesion;
+	string EnterProfesion;
 	char choice;
 	rabotnik Parsing(data,ArrForParsedWords);
 	Parsdata(ArrForParsedWords,rab);
 		do 
 		{
-			cout << "введите профессию: director/programmer/assistant "; cin >> StrForEnterProfesion;
+			cout << "введите профессию: director/programmer/assistant "; cin >> EnterProfesion;
 			for (int i = 0; i < rab.size() ; i++)
 			{
-				if (StrForEnterProfesion == "director")
+				if (EnterProfesion == "director")
 				{
-					if (rab[i]->isProf(StrForEnterProfesion))
+					if (rab[i]->isProf(EnterProfesion))
 					{
 						rab[i]->showdata();
 					}
 				}
-				if (StrForEnterProfesion == "programmer")
+				if (EnterProfesion == "programmer")
 				{
-					if (rab[i]->isProf(StrForEnterProfesion))
+					if (rab[i]->isProf(EnterProfesion))
 					{
 						rab[i]->showdata();
 					}
 				}
-				if (StrForEnterProfesion == "assistant")
+				if (EnterProfesion == "assistant")
 				{
-					if (rab[i]->isProf(StrForEnterProfesion))
+					if (rab[i]->isProf(EnterProfesion))
 					{
 						rab[i]->showdata();
 					}
