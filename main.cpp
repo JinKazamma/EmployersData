@@ -12,11 +12,10 @@ class rabotnik
 	int timetoInt;
 public:
 	rabotnik(){}
-	rabotnik(string &data,vector <string> &slova)
+	rabotnik(string &data,vector <string> &ArrForParsedWords)
 	{	
-		string slovo;
-		string str;
-		string str2;
+		string Parsedstring;
+		string strToReadData;
 		ifstream fin;
 		fin.open(data);
 		if (fin.is_open())
@@ -25,7 +24,7 @@ public:
 		char ch;
 		while (fin.get(ch))
 		{
-			str += ch;
+			strToReadData += ch;
 		}
 	}
 	else
@@ -33,26 +32,18 @@ public:
 		cout << "ошибка файл не открылся" << endl;
 	}
 	fin.close();
-	for (int i = 0; i < str.size() - 1; i++)
+	for (int i = 0; i < strToReadData.size() - 1; i++)
 	{
-		if (str[i] != '\n')
+		if (strToReadData[i] != '\n'&&strToReadData[i]!=';')
 		{
-			str2 += str[i];
-		}
-	}
-	for (int j = 0; j < str2.size(); j++)
-	{
-		if (str2[j] != ';')
-		{
-			slovo += str2[j];
+			Parsedstring += strToReadData[i];
 		}
 		else
 		{
-			slova.push_back(slovo);
-			slovo.clear();
+			ArrForParsedWords.push_back(Parsedstring);
+			Parsedstring.clear();
 		}
 	}
-
 	};
 	virtual void getdata(const string &Name,const string &Time)
 	{
@@ -125,25 +116,25 @@ public:
 		return (str=="assistant");
 	}
 };
-void Parsdata(vector<string>&slova,vector <rabotnik*> &rab)
+void Parsdata(vector<string>&ArrForParsedWords,vector <rabotnik*> &rab)
 {
 	int k = 0;
-	for (int j = 0; j < slova.size(); j++)
+	for (int j = 0; j < ArrForParsedWords.size(); j++)
 		{
-			if (slova[j] == "director")
+			if (ArrForParsedWords[j] == "director")
 			{
 				rab.push_back(new director);
-				rab[k++]->getdata(slova[j + 1], slova[j + 2]);
+				rab[k++]->getdata(ArrForParsedWords[j + 1], ArrForParsedWords[j + 2]);
 			}
-			if (slova[j] == "programmer")
+			if (ArrForParsedWords[j] == "programmer")
 			{ 
 				rab.push_back(new programmer);
-				rab[k++]->getdata(slova[j + 1], slova[j + 2]);
+				rab[k++]->getdata(ArrForParsedWords[j + 1], ArrForParsedWords[j + 2]);
 			}
-			if (slova[j] == "assistant")
+			if (ArrForParsedWords[j] == "assistant")
 			{
 				rab.push_back(new assistant);
-				rab[k++]->getdata(slova[j + 1], slova[j + 2]);
+				rab[k++]->getdata(ArrForParsedWords[j + 1], ArrForParsedWords[j + 2]);
 			}
 		}	
 }
@@ -151,40 +142,40 @@ int main()
 {
 	setlocale(LC_ALL, "ru");
 	string data = "/home/dante/Документы/Task1/employes.dat";
-	vector <string> slova;
+	vector <string> ArrForParsedWords;
 	vector <rabotnik*> rab;
-	string vibor;
-	char ch;
-	rabotnik ParsSlova(data,slova);
-	Parsdata(slova,rab);
+	string StrForEnterProfesion;
+	char choice;
+	rabotnik Parsing(data,ArrForParsedWords);
+	Parsdata(ArrForParsedWords,rab);
 		do 
 		{
-			cout << "введите профессию: director/programmer/assistant "; cin >> vibor;
+			cout << "введите профессию: director/programmer/assistant "; cin >> StrForEnterProfesion;
 			for (int i = 0; i < rab.size() ; i++)
 			{
-				if (vibor == "director")
+				if (StrForEnterProfesion == "director")
 				{
-					if (rab[i]->isProf(vibor))
+					if (rab[i]->isProf(StrForEnterProfesion))
 					{
 						rab[i]->showdata();
 					}
 				}
-				if (vibor == "programmer")
+				if (StrForEnterProfesion == "programmer")
 				{
-					if (rab[i]->isProf(vibor))
+					if (rab[i]->isProf(StrForEnterProfesion))
 					{
 						rab[i]->showdata();
 					}
 				}
-				if (vibor == "assistant")
+				if (StrForEnterProfesion == "assistant")
 				{
-					if (rab[i]->isProf(vibor))
+					if (rab[i]->isProf(StrForEnterProfesion))
 					{
 						rab[i]->showdata();
 					}
 				}
 			}
-			cout << "ввести еще? y/n "; cin >> ch;
-	}	while (ch != 'n');
+			cout << "ввести еще? y/n "; cin >> choice;
+	}	while (choice != 'n');
 	return 0;
 }
