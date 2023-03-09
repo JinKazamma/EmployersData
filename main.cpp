@@ -10,7 +10,6 @@ class rabotnik
 	string name;
 	string time;
 	int vremja;
-	
 public:
 	rabotnik(){}
 	rabotnik(string &data,vector <string> &slova)
@@ -74,6 +73,7 @@ public:
 		vremja = stoi(time);
 	}
 	virtual void showdata(){}
+	virtual bool isProf(string&){}
 
 	
 	
@@ -93,6 +93,10 @@ public:
 		
 		cout << gettime() * koef << "$" << endl;
 	}	
+	bool isProf(string &str)
+	{
+		return (str=="director");
+	}
 };
 class programmer : public rabotnik
 {
@@ -109,6 +113,10 @@ public:
 
 		cout  << gettime() * koef << "$" << endl;
 	}
+	bool isProf(string &str)
+	{
+		return (str=="programmer");
+	}
 };
 class assistant : public rabotnik
 {
@@ -123,6 +131,10 @@ public:
 	{
 		cout << name;
 		cout <<"\t"<<gettime() * koef<<"$" << endl;
+	}
+	bool isProf(string &str)
+	{
+		return (str=="assistant");
 	}
 };
 bool isDirector(rabotnik* pUknown)
@@ -178,30 +190,31 @@ int main()
 	vector <string> slova;
 	vector <rabotnik*> rab;
 	string vibor;
-	rabotnik ParsSlova(data,slova);
 	char ch;
+	rabotnik ParsSlova(data,slova);
 	Parsdata(slova,rab);
-		do {
+		do 
+		{
 			cout << "введите профессию: director/programmer/assistant "; cin >> vibor;
 			for (int i = 0; i < rab.size() ; i++)
 			{
 				if (vibor == "director")
 				{
-					if (isDirector(rab[i]))
+					if (rab[i]->isProf(vibor))
 					{
 						rab[i]->showdata();
 					}
 				}
 				if (vibor == "programmer")
 				{
-					if (isProgrammer(rab[i]))
+					if (rab[i]->isProf(vibor))
 					{
 						rab[i]->showdata();
 					}
 				}
 				if (vibor == "assistant")
 				{
-					if (isAssistant(rab[i]))
+					if (rab[i]->isProf(vibor))
 					{
 						rab[i]->showdata();
 					}
