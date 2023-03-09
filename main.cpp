@@ -8,13 +8,12 @@ using namespace std;
 class rabotnik
 {protected:
 	string name;
-	string time;
-	int vremja;
+	string timeOfWork;
+	int timetoInt;
 public:
 	rabotnik(){}
 	rabotnik(string &data,vector <string> &slova)
 	{	
-		int temp = 0;
 		string slovo;
 		string str;
 		string str2;
@@ -34,13 +33,6 @@ public:
 		cout << "ошибка файл не открылся" << endl;
 	}
 	fin.close();
-	for (int i = 0; i < str.size() - 1; i++)
-	{
-		if (str[i] == ';')
-		{
-			temp++;
-		}
-	}
 	for (int i = 0; i < str.size() - 1; i++)
 	{
 		if (str[i] != '\n')
@@ -65,11 +57,11 @@ public:
 	virtual void getdata(const string &Name,const string &Time)
 	{
 		name = Name;
-		time = Time;
+		timeOfWork = Time;
 	}
 	virtual int gettime()
 	{
-		vremja = stoi(time);
+		timetoInt = stoi(timeOfWork);
 	}
 	virtual void showdata(){}
 	virtual bool isProf(const string&){}	
