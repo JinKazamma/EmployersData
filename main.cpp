@@ -137,30 +137,6 @@ public:
 		return (str=="assistant");
 	}
 };
-bool isDirector(rabotnik* pUknown)
-{
-	director* pdir;
-	if (pdir = dynamic_cast<director*>(pUknown))
-		return true;
-	else
-		return false;
-}
-bool isProgrammer(rabotnik* pUknown)
-{
-	programmer* pdir;
-	if (pdir = dynamic_cast<programmer*>(pUknown))
-		return true;
-	else
-		return false;
-}
-bool isAssistant(rabotnik* pUknown)
-{
-	assistant* pdir;
-	if (pdir = dynamic_cast<assistant*>(pUknown))
-		return true;
-	else
-		return false;
-}
 void Parsdata(vector<string>&slova,vector <rabotnik*> &rab)
 {
 	int k = 0;
