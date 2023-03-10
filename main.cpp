@@ -52,10 +52,11 @@ public:
 	}
 	int gettime()
 	{
-		timetoInt = stoi(timeOfWork);
+		return timetoInt = stoi(timeOfWork);
 	}
 	virtual void showdata(){}
-	virtual bool isProf(const string&){}	
+	virtual bool isProf(const string&){};
+	~worker(){};
 };
 class director : public worker
 {
@@ -76,6 +77,7 @@ public:
 	{
 		return (str=="director");
 	}
+~director(){}
 };
 class programmer : public worker
 {
@@ -96,6 +98,7 @@ public:
 	{
 		return (str=="programmer");
 	}
+	~programmer(){}
 };
 class assistant : public worker
 {
@@ -115,6 +118,7 @@ public:
 	{
 		return (str=="assistant");
 	}
+	~assistant(){};
 };
 void Parsdata(vector<string>&ArrForParsedWords,vector <worker*> &rab)
 {
@@ -177,5 +181,7 @@ int main()
 			}
 			cout << "ввести еще? y/n "; cin>>choice;
 	}	while (choice != 'n');
+	for (int i = 0; i < rab.size() ; i++)
+		delete rab[i];
 	return 0;
 }
